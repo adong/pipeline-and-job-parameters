@@ -1,0 +1,21 @@
+shared:
+    image: node:14
+
+parameters:
+  p1: p1
+  p2:
+      value: adong
+      description: User running build
+
+jobs:
+    main:
+        requires: [~pr, ~commit]
+        steps:
+            - p1: echo $(meta get parameters.p1)
+            - p2: echo $(meta get parameters.p2)
+
+        parameters:
+            p1: main p1
+            p2:
+                value: parameter name for main job
+                description: This is a job parameter desc
